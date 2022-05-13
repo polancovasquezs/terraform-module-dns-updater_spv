@@ -19,6 +19,7 @@ As we are still prototyping the solution, we are only going to support `A` DNS R
 │       ├── input-json
 │       │   ├── subdomain-a.json
 │       │   └── subdomain-b.json
+│       │   └── (...).json
 
 ## JSON File Name --> DNS Record Name
 ## JSON File Object --> Attributes of a DNS Record
@@ -55,6 +56,8 @@ You should exclusively work under a xNIX-like Operating System (e.g. Linux). Mor
 Once you finish, make sure you `commit` and `push` all the files you have been working on to your own repo, as well as share the GitHub URL with your recruiter.
 
 ## Checklist
+
+These are the **expected outcomes** you will be presenting during the first half of the technical interview:
 
  - [ ] Add comments to the Terraform module in the header section of [main.tf](./main.tf) that explains what the module does, and how to use it (as is if you did not improve it).
  - [ ] Populate the root `variable.tf` and `output.tf` with your best guesses about what you would expect from a well-written Terraform module (as is if you did not improve it).
