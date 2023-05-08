@@ -5,35 +5,21 @@ provider "dns" {
   }
 }
 
-#locals {
-#
-#  dns_record_file = fileset("./input-json", "*.json")
-#  dns_record_data  = [for data in local.dns_records_files : jsondecode(file("./input-json/${data}"))]
-#}
 
 locals {
+
   records = flatten(
     [for dns_record_file in fileset("./input-json", "*.json") :
-      [for attribute in jsondecode(file("./input-json/${dns_record_file}")) :
-        merge(attribute, {
-          name = trimsuffix(dns_record_file, ".json")
+      [for record_attribute in jsondecode(file("./input-json/${dns_record_file}")) :
+        merge(record_attribute, {
+          "name" = trimsuffix(dns_record_file, ".json")
         })
       ]
     ]
   )
-}
 
-variable "name" {
-  type = map(string)
-  default = {
-  }
-
-}
-
-variable "records" {
-  type = map(string)
-  default = {
-  }
+#  dns_record_file = fileset("./input-json", "*.json")
+#  dns_record_data = [for data in local.dns_record_file : jsondecode(file("./input-json/${data}"))]
 
 }
 
@@ -52,3 +38,13 @@ resource "dns_a_record_set" "www" {
   addresses = each.value.addresses
   ttl       = each.value.ttl
 }
+
+#resource "dns_a_record_set" "www" {
+#  #for_each = { for record in flatten(local.dns_record_data) : name => record.zone }
+#  #for_each  = flatten(local.dns_record_data)
+#  for_each  = local.dns_record_data
+#  zone      = each.value.zone
+#  name      = each.value.name
+#  addresses = each.value.addresses
+#  ttl       = each.value.ttl
+#}
