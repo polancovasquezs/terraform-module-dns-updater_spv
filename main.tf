@@ -40,6 +40,12 @@ terraform {
   }
 }
 
+# Configure the DNS Provider
+provider "dns" {
+  update {
+    server = "127.0.0.1"
+  }
+}
 
 # ------------------------------------------
 # Write your local resources here
@@ -54,13 +60,13 @@ locals {
 # Write your Terraform resources here
 # ------------------------------------------
 
-resource "dns_a_record_set" "www" {
-  zone = "example.com."
-  name = "www"
-  addresses = [
-    "192.168.0.1",
-    "192.168.0.2",
-    "192.168.0.3",
-  ]
-  ttl = 300
-}
+# resource "dns_a_record_set" "www" {
+#   zone = "example.com."
+#   name = "www"
+#   addresses = [
+#     "192.168.0.1",
+#     "192.168.0.2",
+#     "192.168.0.3",
+#   ]
+#   ttl = 300
+# }
