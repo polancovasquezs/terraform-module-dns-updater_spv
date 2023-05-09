@@ -23,7 +23,9 @@ module "dns_" {
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_dns"></a> [dns](#provider\_dns) | 3.3.2 |
 
 ## Modules
 
@@ -31,7 +33,9 @@ No modules.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [dns_a_record_set.www](https://registry.terraform.io/providers/hashicorp/dns/latest/docs/resources/a_record_set) | resource |
 
 ## Inputs
 
@@ -39,4 +43,6 @@ No inputs.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_dns_records"></a> [dns\_records](#output\_dns\_records) | description |

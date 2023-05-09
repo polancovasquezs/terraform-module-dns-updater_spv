@@ -53,20 +53,22 @@ provider "dns" {
 
 locals {
 
-}
+  records = {
+    for file in fileset("./input-json", "*.json") :
+    trimsuffix(file, ".json")
+    => jsondecode(file("./input-json/${file}"))
+  }
 
+}
 
 # ------------------------------------------
 # Write your Terraform resources here
 # ------------------------------------------
 
 resource "dns_a_record_set" "www" {
-  zone = "example.com."
-  name = "www"
-  addresses = [
-    "192.168.0.1",
-    "192.168.0.2",
-    "192.168.0.3",
-  ]
-  ttl = 300
+  for_each  = local.records
+  name      = each.key
+  zone      = each.value.zone
+  addresses = each.value.addresses
+  ttl       = each.value.ttl
 }
