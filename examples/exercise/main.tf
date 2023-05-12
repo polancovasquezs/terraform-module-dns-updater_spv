@@ -23,10 +23,10 @@ module "dns_updater" {
 
 }
 
-resource "dns_a_record_set" "www" {
-  for_each  = local.records
-  name      = each.key
-  zone      = each.value.zone
-  addresses = each.value.addresses
-  ttl       = each.value.ttl
-}
+#resource "dns_a_record_set" "www" {
+#  for_each  = local.records
+#  name      = each.key
+#  zone      = each.value.zone
+#  addresses = each.value.addresses
+#  ttl       = each.value.ttl
+#}
